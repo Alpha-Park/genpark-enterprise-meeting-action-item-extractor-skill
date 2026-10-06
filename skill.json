@@ -1,0 +1,43 @@
+{
+  "name": "genpark-enterprise-meeting-action-item-extractor-skill",
+  "version": "1.0.0",
+  "description": "Enterprise Multi-Speaker Meeting Action Item Extractor & WeChat Work Task Dispatcher. Analyzes conversational meeting transcripts from Tencent Meeting, Zoom, and Teams, extracts explicit commitments, dates, and assignees, performs Eisenhower urgency-importance matrix prioritization, and formats collaborative task cards.",
+  "tools": [
+    {
+      "name": "extract_meeting_action_items",
+      "description": "Extract action items, assignees, deadlines, and Eisenhower priority matrix from multi-speaker meeting transcripts, generating WeChat Work notification cards.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "extract_action_items",
+              "prioritize_action_items",
+              "generate_task_card"
+            ],
+            "description": "Meeting extraction action."
+          },
+          "transcript_lines": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of multi-speaker transcript utterances (e.g. 'Alice: I will send the quarterly report by Friday')."
+          },
+          "meeting_title": {
+            "type": "string",
+            "description": "Title of the enterprise meeting."
+          },
+          "default_assignee": {
+            "type": "string",
+            "description": "Fallback assignee if unspecified."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
